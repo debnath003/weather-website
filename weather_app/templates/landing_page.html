@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Welcome to the Weather Website!</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+        .nav-item {
+            margin-right: auto;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const city = document.getElementById("citySelect").value;
+            const time = document.getElementById("timeSelect").value;
+            let message = "";
+
+            if (!city && !time) {
+                message = "Please select a city and time first.";
+            } else if (!city) {
+                message = "Select a city!";
+            } else if (!time) {
+                message = "Select a time!";
+            }
+
+            if (message) {
+                alert(message);
+                return false;
+            }
+
+            // Redirect to weather details page with city and time as parameters
+            window.location.href = '/weather/?city=' + city + '&time=' + time;
+            return false; // Prevent the form from submitting in the traditional way
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="#">Weather</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh;">
+        <h1 style="text-align: center;">☀️ Welcome to the Weather Website! 🌧️</h1>
+        <form onsubmit="return validateForm()" style="width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+            <div class="form-group" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                <label for="citySelect" style="margin-right: 5px;">Select a City:</label>
+                <select id="citySelect" class="form-control" style="width: 45%;">
+                    <option value="" selected>Select a City</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="delhi">Delhi</delhi>
+                    <option value="bangalore">Bangalore</bangalore>
+                    <option value="kolkata">Kolkata</kolkata>
+                    <option value="chennai">Chennai</chennai>
+                    <option value="london">London</london>
+                    <option value="sydney">Sydney</sydney>
+                    <option value="tokyo">Tokyo</tokyo>
+                    <option value="toronto">Toronto</toronto>
+                    <option value="dubai">Dubai</dubai>
+                </select>
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                <label for="timeSelect" style="margin-right: 5px;">Select a Time:</label>
+                <select id="timeSelect" class="form-control" style="width: 45%;">
+                    <option value="" selected>Select a Time</option>
+                    <option value="18:00">18:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="00:00">00:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="06:00">06:00</option>
+                </select>
+            </div>
+            <div style="display: flex; width: 100%; justify-content: center; margin-top: 10px;">
+                <button type="submit" class="btn btn-primary" style="width: 30%; margin: 0 5px;">Get Weather</button>
+                <a href="{% url 'weather_app:saved_cities' %}" class="btn btn-secondary" style="width: 30%; margin: 0 5px;">Saved Cities</a>
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

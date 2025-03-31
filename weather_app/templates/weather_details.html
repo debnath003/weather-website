@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Weather Details</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% csrf_token %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="#">Weather</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div class="container text-center" style="display: flex; flex-direction: column; align-items: justify; margin-top: 20px;">
+        <h1>Weather Details for {{ city }}</h1>
+
+        <div class="current-weather-container">
+            <h2 class="current-weather-heading">Current Weather</h2>
+            <p>Temperature: {{ current_weather.temperature }}°C</p>
+            <p>Description: {{ current_weather.description }}</p>
+            <p>Wind Speed: {{ current_weather.wind_speed }} m/s</p>
+        </div>
+
+        <h2>5-Day Forecast</h2>
+        <div class="carousel-container">
+            <div class="forecast-carousel">
+                {% for item in forecast %}
+                    <div class="forecast-item">
+                        <h3 class="font-weight-bold">At {{ item.dt_txt}}</h3>
+                        <p>Temperature: {{ item.main.temp }}°C</p>
+                        <p>Description: {{ item.weather.0.description }}</p>
+                        <p>Humidity: {{ item.main.humidity }}%</p>
+                        <img src="https://openweathermap.org/img/wn/{{ item.weather.0.icon }}@2x.png" alt="{{ item.weather.0.description }}" class="weather-icon centered-icon">
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="carousel-arrows">
+                <button class="carousel-arrow carousel-arrow-left">&#8249;</button>
+                <button class="carousel-arrow carousel-arrow-right">&#8250;</button>
+            </div>
+        </div>
+        <br><br><br>
+        <div style="position: fixed; bottom: 10px; left: 10px;">
+            <a href="{% url 'weather_app:landing_page' %}" class="btn btn-primary">Return Home</a>
+        </div>
+        <div style="position: fixed; bottom: 10px; right: 10px;">
+            <button type="button" class="btn btn-success save-city-button" data-toggle="modal" data-target="#saveCityModal">Save City</button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="saveCityModal" tabindex="-1" role="dialog" aria-labelledby="saveCityModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="saveCityModalLabel">Save City</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="saveCityForm" method="post">
+                            {% csrf_token %}
+                            <div class="form-group" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                                <label for="userName">Your Name:</label>
+                                <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter your name">
+                            </div>
+                            <button type="submit" class="btn btn-success">Save City</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.forecast-carousel').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                arrows: true,
+                prevArrow: $('.carousel-arrow-left'),
+                nextArrow: $('.carousel-arrow-right'),
+                autoplay: true,
+                autoplaySpeed: 5000,
+            });
+
+            $('.return-home-button').click(function() {
+                window.location.href = '/'; // Redirect to landing page
+            });
+
+            $('#saveCityForm').submit(function(event) {
+                event.preventDefault();
+                var userName = $('#userName').val();
+                var city = "{{ city }}";
+                var temperature = "{{ current_weather.temperature }}";
+                var time = "{{ time }}";
+
+                // Example conditions for warnings (replace with actual logic)
+                let cityAlreadySaved = false; // Replace with actual logic to check if city is saved
+                let cityNameEmpty = userName.trim() === "";
+
+                if (cityAlreadySaved) {
+                    alert("This city is already saved.");
+                    $('#saveCityModal').modal('hide');
+                    $('#saveCityModal').removeClass('show');
+                    $('.modal-backdrop').remove();
+                    $('body').removeClass('modal-open'); // Ensure body class is removed
+                    return; // Exit the function after warning
+                }
+                if (cityNameEmpty) {
+                    alert("User name cannot be empty.");
+                    $('#saveCityModal').modal('hide');
+                    $('#saveCityModal').removeClass('show');
+                    $('.modal-backdrop').remove();
+                    $('body').removeClass('modal-open'); // Ensure body class is removed
+                    return; // Exit if city name is empty
+                }
+
+
+                $.ajax({
+                    url: '{% url "weather_app:save_city" %}',
+                    type: 'POST',
+                    data: {
+                        userName: userName,
+                        city: city,
+                        temperature: temperature,
+                        time: time,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        alert(response.message);
+                        $('#saveCityModal').modal('hide');
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error saving city!');
+                        $('#saveCityModal').modal('hide');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+/* General Styles */
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+/* Landing Page Styles */
+.landing-page {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.landing-page select {
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Button Styles */
+.button {
+    background-color: #00509e; /* Button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #003366; /* Darker on hover */
+}
+
+/* Weather Details Page Styles */
+.weather-details {
+    text-align: center;
+    margin: 20px;
+}
+
+.current-weather-container {
+    padding: 20px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 600px;
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    transition: transform 0.5s ease;
+}
+
+/* Carousel Styles */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.forecast-carousel {
+    width: 100%;
+}
+
+.forecast-item {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.weather-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.carousel-arrows {
+    position: absolute;
+    top: 50%;
+    left: -44px; /* Adjust to move left arrow outside */
+    right: -44px; /* Adjust to move right arrow outside */
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0; /* Remove padding */
+}
+
+.carousel-arrow {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 100%;
+    font-size: 20px;
+}
+
+.carousel-arrow:hover {
+    background-color: darkgrey;
+}
+
+/* Weather Details Page Styles */
+.current-weather-heading {
+    color: rgb(0, 153, 255);
+}
+
+.centered-icon {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Buttons Styles */
+.buttons-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px; /* Align to the left */
+    right: 20px; /* Align to the right */
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.return-home-button {
+    margin-right: auto; /* Push to the left */
+}
+
+.save-city-button {
+    margin-left: auto; /* Push to the right */
+}
+
+/* Saved Cities Page Styles */
+.saved-cities {
+    margin: 20px;
+}
+
+.saved-cities ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.saved-cities li {
+    background-color: #ffffff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* About Page Styles */
+.about {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .navbar a {
+        display: block;
+        text-align: center;
+    }
+
+    .carousel-arrows {
+        left: 0;
+        right: 0;
+        padding: 0;
+    }
+
+    .buttons-container {
+        position: static;
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .return-home-button {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .save-city-button {
+        margin-left: 0;
+    }
+}

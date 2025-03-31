@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>About</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="#">Weather</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div class="container" style="display: flex; flex-direction: column; align-items: justify; margin-top: 20px;">
+        <h1 style="text-align: center;">About This Weather Website</h1>
+        <p style="text-align: justify; margin-top: 10px;"><strong>This website uses the following technologies:</strong></p>
+        <ul style="text-align: left;">
+            <li><strong>Frontend:</strong> HTML, CSS, Bootstrap, JavaScript</li>
+            <li><strong>Backend:</strong> Django (Python)</li>
+            <li><strong>Database:</strong> SQLite</li>
+        </ul>
+
+        <p style="text-align: justify; margin-top: 10px;">
+            <strong>Technologies Used:</strong>
+        </p>
+        <ul style="text-align: justify;">
+            <li><strong>HTML:</strong> Used for structuring the content of the web pages.</li>
+            <li><strong>CSS:</strong> Used for styling the web pages and making them visually appealing.</li>
+            <li><strong>Bootstrap:</strong> A CSS framework used for creating responsive and mobile-first web pages.</li>
+            <li><strong>JavaScript:</strong> Used for adding interactivity to the web pages.</li>
+            <li><strong>Django (Python):</strong> A high-level Python web framework used for building the backend of the website.</li>
+            <li><strong>SQLite:</strong> A lightweight database used for storing the saved cities.</li>
+            <li><strong>OpenWeatherMap API:</strong> Used for fetching weather data.</li>
+        </ul>
+
+        <p style="text-align: justify;">
+            <strong>How it Works:</strong>
+        </p>
+        <ul style="text-align: justify;">
+            <li>The website fetches weather data from the OpenWeatherMap API.</li>
+            <li>The user can select a city and a time from the drop-down menus.</li>
+            <li>The website sends a request to the OpenWeatherMap API for the selected city.</li>
+            <li>The OpenWeatherMap API returns the weather information for that city.</li>
+            <li>The website displays the weather information to the user.</li>
+        </ul>
+
+        <p style="text-align: justify;">
+            <strong>Unique Feature: Saving and Managing Cities</strong>
+        </p>
+        <ul style="text-align: justify;">
+            <li>Users can save cities with their name.</li>
+            <li>Users can view a list of their saved cities.</li>
+            <li>Users can delete cities from their saved list.</li>
+            <li>The saved cities are stored in a database.</li>
+            <li style="margin-bottom: 50px;">Users can see weather details of saved cities.</li>
+        </ul>
+    </div>
+    <div style="position: fixed; bottom: 10px; left: 10px;">
+        <a href="{% url 'weather_app:landing_page' %}" class="btn btn-primary">Return Home</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+</final_file_content>
