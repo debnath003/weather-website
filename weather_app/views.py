@@ -7,7 +7,7 @@ import urllib.parse
 from .models import SavedCity
 from django.contrib import messages
 
-API_KEY = 'b75279e94cc230e5fb92dbccb62c3053'  # Replace with your actual API key
+API_KEY = 'YOUR_API_KEY'  # Replace with your actual API key
 
 def landing_page(request):
     if request.method == 'POST':
