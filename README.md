@@ -1,17 +1,19 @@
 # Real-Time-Weather-Website
 
+## Weather App
+
 ### Technologies Used
 
 #### Frontend
-- **HTML**: Structuring the content of web pages.
-- **CSS**: Styling web pages for visual appeal.
-- **Bootstrap**: A CSS framework for creating responsive and mobile-first web pages.
-- **JavaScript**: Adding interactivity to the web pages.
+- **[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)**: Structuring the content of web pages.
+- **[CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)**: Styling web pages for visual appeal.
+- **[Bootstrap](https://getbootstrap.com/)**: A CSS framework for creating responsive and mobile-first web pages.
+- **[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)**: Adding interactivity to the web pages.
 
 #### Backend
-- **Django (Python)**: A high-level Python web framework for building the backend.
-- **SQLite**: A lightweight database for storing saved cities.
-- **OpenWeatherMap API**: Fetching real-time weather data.
+- **[Django (Python)](https://www.djangoproject.com/)**: A high-level Python web framework for building the backend.
+- **[SQLite](https://www.sqlite.org/)**: A lightweight database for storing saved cities.
+- **[OpenWeatherMap API](https://openweathermap.org/api)**: Fetching real-time weather data.
 
 ---
 
