@@ -41,4 +41,4 @@ You can access the project here: [Weather App](https://pdebnath.pythonanywhere.c
 ---
 
 ### License
-This project is open-source and available under the **GPL 3.0 License**.
+This project is open-source and available under the **[GPL 3.0 License](https://www.gnu.org/licenses/gpl-3.0.en.html)**.
