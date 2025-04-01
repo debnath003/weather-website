@@ -36,7 +36,7 @@
 ---
 
 ### Access the Website
-You can access the project here: [Weather App](https://pdebnath.pythonanywhere.com/)
+You can access the project here: **[Weather App](https://pdebnath.pythonanywhere.com/)**
 
 ---
 
